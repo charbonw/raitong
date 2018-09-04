@@ -1,9 +1,9 @@
 # raitong
 
-##Raitong Organics sensor array code repository
+## Raitong Organics sensor array code repository
 
 
-###Receiver:
+### Receiver:
 
 thingspeak.ino -- code for the Arduino/LoRa receiver
 
@@ -11,7 +11,7 @@ thingspeak channel: https://thingspeak.com/channels/568023
 
 Note: make sure the TX/RX pin numbers are correct for softwareSerial
 
-###Transmitter:
+### Transmitter:
 
 In order to program the Raspberry Pi, it must be connected to WiFi:
   + It will automatically connect to a hotspot with the following settings:
