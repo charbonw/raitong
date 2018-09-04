@@ -5,7 +5,9 @@ Raitong Organics sensor array code repository
 Receiver:
 
 thingspeak.ino -- code for the Arduino/LoRa receiver
+
 thingspeak channel: https://thingspeak.com/channels/568023
+
 Note: make sure the TX/RX pin numbers are correct for softwareSerial
 
 Transmitter:
@@ -40,9 +42,13 @@ Dataplicity can be laggy. To use an SSH terminal like PuTTy, use the following i
     + in this case, connect to the Pi via dataplicity and check the IP address with "Hostname -I"
     
 The main files are located within /home/pi
+
 on_start.sh runs on startup, and calls read_sensors.py in a loop
+
 read_sensors.py grabs data from each of the sensors and writes it to the local file test-data.csv
+
 next, the data is transmitted via the LoRa module
+
 finally, back in on_start.sh, test-data.csv is copied to a USB drive if one exists
 
 
