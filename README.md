@@ -1,8 +1,9 @@
 # raitong
 
-Raitong Organics sensor array code repository
+##Raitong Organics sensor array code repository
 
-Receiver:
+
+###Receiver:
 
 thingspeak.ino -- code for the Arduino/LoRa receiver
 
@@ -10,7 +11,7 @@ thingspeak channel: https://thingspeak.com/channels/568023
 
 Note: make sure the TX/RX pin numbers are correct for softwareSerial
 
-Transmitter:
+###Transmitter:
 
 In order to program the Raspberry Pi, it must be connected to WiFi:
   + It will automatically connect to a hotspot with the following settings:
@@ -25,9 +26,9 @@ Once the Pi is connected, you can easily program it in our browser using datapli
   + email: charbow@oregonstate.edu
   + password: raitong498
   + if you need to access sudo through dataplicity:
-    + $ su pi
-    + $ username: pi
-    + $ password: raitong
+    + `$ su pi`
+    + `$ username: pi`
+    + `$ password: raitong`
     
 Dataplicity can be laggy. To use an SSH terminal like PuTTy, use the following info:
   + Hotspot:
@@ -39,7 +40,7 @@ Dataplicity can be laggy. To use an SSH terminal like PuTTy, use the following i
   + username: pi
   + password: raitong
   + The Pi does not have a static IP, so the IP addresses can change
-    + in this case, connect to the Pi via dataplicity and check the IP address with "Hostname -I"
+    + in this case, connect to the Pi via dataplicity and check the IP address with `Hostname -I`
     
 The main files are located within /home/pi
 
