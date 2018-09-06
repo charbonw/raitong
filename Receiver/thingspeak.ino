@@ -1,20 +1,8 @@
-/* This program attempts to read sensor data from the LoRa module and upload it to thingspeak
- *  It currently does not function. The ethernet shield seems to interfere with the LoRa module communication. They both use SPI, I think.
- *  At any rate, it is only possible to read from the LoRa module /before/ Ethernet.begin(mac) is called.
- *  As far as I can tell, there is no way to stop the Ethernet class. I attempt to programatically reset the Arduino in order to restart the program.
- *  This doesn't seem to have worked. I haven't had time to test or debug.
- *  
- *  However, reading from the LoRa module DOES work. Writing to Thingspeak DOES work. Just not together. See other test files in github.
- *  
- *  - Will Charbonneau 09/04/2018
- */
-
-
 #include <String.h>
 #include <ThingSpeak.h>
 #include <SoftwareSerial.h>
-SoftwareSerial HC12(11, 12); // HC-12 TX Pin, HC-12 RX Pin
-#define SETPIN 13 // HC_12 SET Pin
+SoftwareSerial HC12(8, 9); // HC-12 TX Pin, HC-12 RX Pin
+#define SETPIN 7 // HC_12 SET Pin
 
 // init wired ethernet shield
 #include <SPI.h>
@@ -35,6 +23,9 @@ char receivedChars[numChars]; // an array to store the received data
 boolean newData = false;
 
 void setup() {
+  Ethernet.begin(mac);
+  ThingSpeak.begin(client);
+  
   setBaudRate();
   HC12.begin(1200);
   Serial.begin(9600);
@@ -107,9 +98,6 @@ void showNewData() {
     Serial.print("Data Received: ");
     Serial.println(receivedChars);
 
-    Ethernet.begin(mac);
-    ThingSpeak.begin(client);
-
     // data will be a comma-delimited string with 7 values
     // this splits the string into values and sets each to a ThingSpeak field
     char temp[24];
@@ -138,9 +126,6 @@ void showNewData() {
     ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);
     delay(20000); // ThingSpeak will only accept updates every 15 seconds.
     newData = false;
-    resetFunc(); // call reset. this is the only way to close the Ethernet; doesn't seem to work
   }
-
-  void(* resetFunc) (void) = 0; // declare reset function at address 0; doesn't seem to work
 }
 
