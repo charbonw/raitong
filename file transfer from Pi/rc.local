@@ -1,0 +1,4 @@
+#!/bin/sh -e
+
+sudo /home/pi/on_start.sh & > /home/pi/log.txt
+exit 0
